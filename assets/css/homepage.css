@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Comfortaa';
+    background-size: 350rem;
+    background-image: url('/assets/images/CityScape.png'); 
+    animation-name: move;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+  
+@keyframes move {
+    0%, 100% {
+      background-position: right;
+    }
+    50% {
+      background-position: left;
+    }
+}
+
+.container {
+    width: 100%;
+}
+
+#title {
+    text-transform: uppercase;
+    color: white;
+}
+
+input {
+    color: white;
+}
+
+#find-events-btn {
+    width: 50%;
+    background-color: darkslateblue;
+    margin-left: 25%;
+}
+
+footer {
+    background-color: darkslateblue;
+    padding: 1em;
+    color: white;
+    text-align: center;
+}
