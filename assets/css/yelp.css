@@ -34,9 +34,9 @@ h3 {
     color: darkslateblue;
   }
 
-  .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
+.slider:hover {
+   opacity: 1; /* Fully shown on mouse-over */
+}
   
   /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {

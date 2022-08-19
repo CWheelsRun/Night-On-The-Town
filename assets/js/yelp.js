@@ -6,7 +6,6 @@ slider.oninput = function() {
   output.innerHTML = this.value;
 }
 
-
 var userCity = []
  //Form that asks user for their city
 var cityForm =  []
@@ -16,4 +15,3 @@ var restList = document.getElementById("yelpRests")
 var yelpCall = []
 var lon = "";
 var lat = "";
-
