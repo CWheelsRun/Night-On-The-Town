@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./Assets/style.css">
+    <title>Event Page</title>
+</head>
+<body>
+    <div class="headerContainer">
+        <div id="buttons" class="center-align">
+            <a id="homeButton" class="waves-effect waves-light btn-large">Return Home</a>
+        </div>
+        <div id="eventChosen" class="col s6">
+            <!--Where the chosen event will be-->
+        </div>
+    </div>
+    <div id="pageContent">
+
+        <div id="restsContainer" class="col s6">
+            <h3 class="center-align">Restaurants and Bars Near Your Event</h3>
+
+            <div id="yelpRests">
+                <!--Where the yelp resturants will be-->
+            </div>
+        </div>
+
+
+        <div id="sliderContainer">
+            <!--Distance Slider-->
+             
+                <div id="sliderCont">
+
+                    <input type="range" id="myRange" name="distance" min="0" max="10" class="slider">
+                    <p id="miles" class="white-text"> Miles:  <span id="demo"></span></p>
+
+                </div>
+                        
+                
+        </div>
+            
+           
+       
+            
+    </div>
+    
+    <script src="./Assets/script.js"></script>
+</body>
+</html>
