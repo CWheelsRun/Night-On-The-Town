@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     font-family: 'Comfortaa';
     background-size: 350rem;
-    background-image: url('./assets/images/CityScape.png');
+    background-image: url('/assets/images/CityScape.png');
     animation-name: move;
     animation-duration: 120s;
     animation-iteration-count: infinite;
