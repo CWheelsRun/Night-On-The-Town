@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Night On The Town</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-panel black center-align" id="title">
+                        <h1 id="site-name" style="clear:right;">Night On The Town</h1>
+                        <span id="ticketmaster">powered by <img id="tm-logo" src="./assets/images/Ticketmaster.png"
+                            style="width: 8em; height: 1em"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <h5 id="site-intro">Let us know what city you have in mind, and we will help you find the night on the town that's perfect for you!</h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" name="location" id="location" placeholder="City"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <button type="submit" name="btn_find" class="col s12 btn btn-large"
+                    id="find-events-btn">Find Events!</button>
+            </div>
+        </div>
+
+        <div class="row" id="results" style="display:flex">
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-panel black event-results">
+                        <span id="artist-1" class="event-title truncate"></span><br>
+                        <span id="venue-1"></span><br>
+                        <span id="date-1"></span><br>
+                        <span id="time-1"></span>
+                        <a href="" target="_blank" id="info-1">
+                            <div class="card-image hoverable" id="test">
+                                <img class="event-pic" id="image-1">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-panel black event-results">
+                        <span id="artist-2" class="event-title truncate"></span><br>
+                        <span id="venue-2"></span><br>
+                        <span id="date-2"></span><br>
+                        <span id="time-2"></span>
+                        <a href="" target="_blank" id="info-2">
+                            <div class="card-image hoverable">
+                                <img class="event-pic" id="image-2"></img>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-panel black event-results">
+                        <span id="artist-3" class="event-title truncate"></span><br>
+                        <span id="venue-3"></span><br>
+                        <span id="date-3"></span><br>
+                        <span id="time-3"></span>
+                        <a href="" target="_blank" id="info-3"></a>
+                        <div class="card-image hoverable">
+                            <img class="event-pic" id="image-3"></img>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-panel black event-results">
+                        <span id="artist-4" class="event-title truncate"></span><br>
+                        <span id="venue-4"></span><br>
+                        <span id="date-4"></span><br>
+                        <span id="time-4"></span>
+                        <a href="" target="_blank" id="info-4">
+                            <div class="card-image hoverable">
+                                <img class="event-pic" id="image-4"></img>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tabs">
+            <a class="btn-floating" id="tab-left" style="color:rgb(26, 112, 170)"></a>&nbsp;
+            <a class="btn-floating" id="tab-right" style="color:rgb(26, 112, 170)">></a>&nbsp;
+        </div>
+
+        <footer>
+            <div class="container">
+                © 2022 Sour Patch Squad
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"> </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+
+</html>

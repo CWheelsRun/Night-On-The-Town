@@ -15,5 +15,4 @@
 ## APIs Used
 * Ticketmaster
 * Yelp
-* Google Maps
-* Tailwind
+* Materialize
