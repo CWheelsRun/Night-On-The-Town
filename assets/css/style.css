@@ -8,6 +8,7 @@ body {
     animation-duration: 120s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    color: white;
 }
   
 @keyframes move {
@@ -23,13 +24,12 @@ body {
     width: 100%;
 }
 
-#title {
+#site-name {
     text-transform: uppercase;
-    color: white;
 }
 
-input {
-    color: white;
+#site-intro {
+    text-align: center;
 }
 
 #find-events-btn {
