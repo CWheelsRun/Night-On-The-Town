@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./Assets/style.css">
+    <link rel="stylesheet" href="./assets/css/yelp.css">
     <title>Event Page</title>
 </head>
 <body>
@@ -41,12 +42,31 @@
                         
                 
         </div>
+<!--I created this form to ensure that the yelp API was functioning properly-->
+        <div>
+            <form id="user-form">
+                <label for="userCity"> City: </label>
+                <input name="userCity" id="userCity" type="text">
+                <button type="submit" class="submit-btn">
+                    Restaurants
+                </button>
+
+            </form>
+        </div>
+
+        <div class="history"></div>
+
+    <div class="display"></div>
+    <hi class="name"></hi>
+    <p class=""></p>
+    <p class="temp"></p>
             
            
        
             
     </div>
     
-    <script src="./Assets/script.js"></script>
+    <script src="./assets/js/yelp.js"></script>
+
 </body>
 </html>

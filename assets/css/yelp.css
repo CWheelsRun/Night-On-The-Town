@@ -51,8 +51,8 @@ h3 {
 .slider::-moz-range-thumb {
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: purple; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    background: purple; 
+    cursor: pointer; 
   }
 
 #miles {
@@ -71,5 +71,11 @@ h3 {
 }
 
 input[type=range]::-webkit-slider-thumb { background-color: darkslateblue; } 
-input[type=range]::-moz-range-thumb { background-color: darkslateblue; } 
+input[type=range]::-moz-text-thumb { background-color: darkslateblue; } 
 input[type=range]::-ms-thumb { background-color: darkslateblue; }
+
+#userCity {
+  color: white;
+  border-color: darkslateblue;
+}
+
