@@ -52,19 +52,37 @@ function createCardContent(card, contentEl) {
    contentEl.appendChild(timeText);
 }
 
-function renderCard(data) {
+function createCardLink(linkEl) {
+   const link = createElement('a');
+   link.textContent = 'Bars & Restaurants';
+   link.setAttribute('href', 'yelp.html');
+   
+   linkEl.appendChild(link);
+}
+
+function renderCard(card) {
    const cardContainer = createElement('div', 'col');
    cardContainer.classList.add('s12');
    const cardItem = createElement('div', 'card');
-   const cardImage  = createElement('div', 'card-image');
+   const cardImage = createElement('a', 'card-image');
+   cardImage.setAttribute('href', card.eventUrl);
+   cardImage.setAttribute('target', '_blank');
+   
+   createCardHeader(cardImage, card);
 
-   createCardHeader(cardImage, data);
    const cardContent = createElement('div', 'card-content');
    cardContent.classList.add('black-text');
-   createCardContent(data, cardContent);
+   
+   createCardContent(card, cardContent);
+
+   const cardLink = createElement('div', 'card-action');
+   cardLink.classList.add('center-align', 'black');
+
+   createCardLink(cardLink);
 
    cardItem.appendChild(cardImage);
    cardItem.appendChild(cardContent);
+   cardItem.appendChild(cardLink);
    cardContainer.appendChild(cardItem);
    return cardContainer;
 }
@@ -78,12 +96,13 @@ function displayCards(cardArray) {
       console.log("rendered card: ", renderedCard);
       // const newRow = createElement('div', 'row');
       row.appendChild(renderedCard);
-      resultsContainer.appendChild(row);   
+      resultsContainer.appendChild(row);
    })
 }
 
-$("#find-events-btn").on("click",  function(event){
+$("#find-events-btn").on("click",  function(){
    var location = $("#location")[0].value;
+   localStorage.setItem('user_location', location);
    var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc&locale=*&city=" + location + "&apikey=U9U79W6aroxgXPoxrbUloPyqkHPTVAyD";
    console.log(queryURL)
    $.ajax({
@@ -92,6 +111,7 @@ $("#find-events-btn").on("click",  function(event){
    }).then(function (response) {
       let cardArray = new Array();
       console.log(response);
+      removeStaleEvents();
       response._embedded.events.forEach((event) => {
          //console.log("event log: ", event);
          const card = {
@@ -99,10 +119,19 @@ $("#find-events-btn").on("click",  function(event){
             eventVenue: event._embedded.venues[0].name,
             eventDateTime: event.dates.start,
             eventImage: event.images[0],
+            eventUrl: event.url,
          }
          //console.log("card log: ", card);
          cardArray.push(card);
       })
       displayCards(cardArray);
+
+      function removeStaleEvents() {
+         var el = document.getElementById('results');
+         while (el.firstChild)
+            el.removeChild(el.firstChild);
+      }
    });
 });
+
+//console.log(localStorage.getItem('user_location'));
