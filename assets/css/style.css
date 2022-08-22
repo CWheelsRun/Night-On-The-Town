@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Comfortaa';
-    background-image: url('../images/cityscape.png');
+    background-image: url('../../assets/images/cityscape.png');
     background-size: 200%;
     animation-name: move;
     animation-duration: 600s;
