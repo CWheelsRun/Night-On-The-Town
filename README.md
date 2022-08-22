@@ -23,7 +23,7 @@ Night on the town is a website that allows the user to enter any city available 
 
 ## Home Page
 
-![Preview of the homepage](/assets/images/night3.png "Homepage")
+![Preview of the homepage](/assets/images/night1.png "Homepage")
 
 #### We wanted the style to be dark and alluring, and make the homepage simple and easy to understand.
 
