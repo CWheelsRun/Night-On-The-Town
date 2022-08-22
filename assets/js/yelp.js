@@ -6,6 +6,7 @@ slider.oninput = function() {
   output.innerHTML = this.value;
 }
 
+
 var userFormEl = document.querySelector("#user-form")
  //Form that asks user for their city
 var searchInputEl = document.querySelector("#userCity")
