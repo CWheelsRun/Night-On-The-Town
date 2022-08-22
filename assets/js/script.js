@@ -1,8 +1,3 @@
-var event1 = $("#event-1");
-var venue1 = $("#venue-1");
-var date1 = $("#date-1");
-var time1 = $("#time-1");
-
 function createCardHeader(imageEl, card){
    const image = document.createElement('img')
    console.log("log card", card);
@@ -12,7 +7,6 @@ function createCardHeader(imageEl, card){
    title.textContent = card.eventName;
    imageEl.appendChild(image);
    imageEl.appendChild(title);
-   
 }
 
 function createElement(el, className) {
@@ -61,8 +55,6 @@ function createCardContent(card, contentEl) {
 function renderCard(data) {
    const cardContainer = createElement('div', 'col');
    cardContainer.classList.add('s12');
-   cardContainer.classList.add('m4');
-   cardContainer.classList.add('l4');
    const cardItem = createElement('div', 'card');
    const cardImage  = createElement('div', 'card-image');
 
@@ -75,55 +67,42 @@ function renderCard(data) {
    cardItem.appendChild(cardContent);
    cardContainer.appendChild(cardItem);
    return cardContainer;
-
 }
 
-   function displayCards(cardArray) {
-      const resultsContainer = document.getElementById('results');
+function displayCards(cardArray) {
+   const resultsContainer = document.getElementById('results');
       
-      cardArray.forEach((card) => {
-         const row = createElement('div', 'row');
-         const renderedCard = renderCard(card);
-         console.log("rendered card: ", renderedCard);
-         // const newRow = createElement('div', 'row');
-         row.appendChild(renderedCard);
-         resultsContainer.appendChild(row);   
+   cardArray.forEach((card) => {
+      const row = createElement('div', 'row');
+      const renderedCard = renderCard(card);
+      console.log("rendered card: ", renderedCard);
+      // const newRow = createElement('div', 'row');
+      row.appendChild(renderedCard);
+      resultsContainer.appendChild(row);   
+   })
+}
+
+$("#find-events-btn").on("click",  function(event){
+   var location = $("#location")[0].value;
+   var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc&locale=*&city=" + location + "&apikey=U9U79W6aroxgXPoxrbUloPyqkHPTVAyD";
+   console.log(queryURL)
+   $.ajax({
+      url: queryURL,
+      method: "GET"
+   }).then(function (response) {
+      let cardArray = new Array();
+      console.log(response);
+      response._embedded.events.forEach((event) => {
+         //console.log("event log: ", event);
+         const card = {
+            eventName: event.name,
+            eventVenue: event._embedded.venues[0].name,
+            eventDateTime: event.dates.start,
+            eventImage: event.images[0],
+         }
+         //console.log("card log: ", card);
+         cardArray.push(card);
       })
-
-   }
-
-   $("#find-events-btn").on("click",  function(event){
-      event.preventDefault;
-
-      var location = $("#location")[0].value;
-      var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc&locale=*&city=" + location + "&apikey=U9U79W6aroxgXPoxrbUloPyqkHPTVAyD";
-      console.log(queryURL)
-      $.ajax({
-         url: queryURL,
-         method: "GET"
-      }).then(function (response) {
-         let cardArray = new Array();          
-         console.log(response);
-         response._embedded.events.forEach((event) => {
-            //console.log("event log: ", event);
-            const card = {
-               eventName: event.name,
-               eventVenue: event._embedded.venues[0].name,
-               eventDateTime: event.dates.start,
-               eventImage: event.images[0],
-            }
-            //console.log("card log: ", card);
-            cardArray.push(card);
-         })
-         displayCards(cardArray);
-      });
-      
-
-   });      
-
-
-        
-    $(document).ready(function(){
-       $('.tabs').tabs();
-    });
-    
+      displayCards(cardArray);
+   });
+});

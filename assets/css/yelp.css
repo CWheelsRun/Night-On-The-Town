@@ -3,9 +3,9 @@ body {
   flex-direction: column;
   font-family: 'Comfortaa';
   background-image: url('../images/cityscape.png');
-  background-size: 150%;
+  background-size: 200%;
   animation-name: move;
-  animation-duration: 300s;
+  animation-duration: 600s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   color: white;
