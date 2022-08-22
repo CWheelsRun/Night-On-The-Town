@@ -2,24 +2,21 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Comfortaa';
-    background-size: 350rem;
-    background-image: url('/assets/images/CityScape.png');
+    background-image: url('../images/cityscape.png');
+    background-size: 200%;
     animation-name: move;
-    animation-duration: 120s;
+    animation-duration: 600s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     color: white;
 }
-.event-container{
-    
-    align-content: center;
-}
+
 @keyframes move {
     0%, 100% {
-      background-position: right;
+      background-position: top right;
     }
     50% {
-      background-position: left;
+      background-position: top left;
     }
 }
 
@@ -35,15 +32,25 @@ body {
     text-align: center;
 }
 
+input {
+    color: white;
+}
+
+.btn-large {
+    background-color: darkslateblue;
+}
+
 #find-events-btn {
     width: 50%;
-    background-color: darkslateblue;
     margin-left: 25%;
 }
 
 footer {
-    background-color: darkslateblue;
-    padding: 1em;
-    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    line-height: 30px;
+    background-color: rgb(72, 61, 139, 0.5);
     text-align: center;
 }
