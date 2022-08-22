@@ -33,13 +33,13 @@ Night on the town is a website that allows the user to enter any city available 
 
 #### Once the user types in their city of choice, events populate the site.
 #### The user can click on the image of the event to be taken to its Ticketmaster page.
-#### The user can click on the 'Bars & Restaurants' link to be taken to a list of nearby bars and restaurants. 
+#### The user can click on the 'Restaurants & Bars' link to be taken to a list of nearby bars and restaurants. 
 
-## Event List
+## Restaurants & Bars
 
 ![Sample of the listed restaurants/bars](/assets/images/night3.png "Bar & Restaurant List")
 
-#### The user is brought here after selecting 'Bars & Restaurants'.
+#### The user is brought here after selecting 'Restaurants & Bars'.
 #### The user can either navigate to a chosen bar/restaurant, or 'Return Home'.
 
 ## Requirements
