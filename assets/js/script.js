@@ -1,93 +1,127 @@
-var artists1 = $("#artist-1");
+var event1 = $("#event-1");
 var venue1 = $("#venue-1");
 var date1 = $("#date-1");
 var time1 = $("#time-1");
-//var location = $("#location")[0].value;
-// $("#find-events-btn").on("click", function (event) {
-//     var location = $("#location")[0].value;
-    
-//     var sMusic = $("#music").prop("checked");
-//     var cSports = $("#sports").prop("checked");
-//     var cArtsTheater = $("arts-theater").prop("checked");
-//     var cMisc = $("#misc");
-    
-//     var genre_string = "";
-//     if (sMusic || cSports || cArtsTheater || cMisc) {
-//         genre_string = "&segmentID=";
-//     }
-//         if (smusic) {
-//             genre_string += "KZFzniwnSyZfZ7v7nJ,";
-//         }
-//         if (cSports) {
-//             genre_string += "KZFzniwnSyZfZ7v7nE,";
-//         }
-//         if (cArtsTheater) {
-//             genre_string += "KZFzniwnSyZfZ7v7na,";
-//         }
-//         if (cMisc) {
-//             genre_string += "KZFzniwnSyZfZ7v7n1";
-//         }
-//         console.log(genre_string);
-    
-//         console.log("location read is: " + location);
-    
-//         queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc" +
-//     genre_string + "&locale=*&city=" + location + "&apikey=U9U79W6aroxgXPoxrbUloPyqkHPTVAyD";
-    
-//         console.log(queryURL);
-    
-//         $.ajax({
-//             url: queryURl,
-//             method: "GET"
-//         }).then(function (response) {
-//         $("#card_container").empty();
-//         event_array = response._embedded.events;
-    
-//         var new_td;
-//         var clean_date;
-//         var timeZone;
-//         console.log(response);
-    
-//         console.log(event_array);
-    
-//         for (var i = 0; i < event_array.length; i++) {
-//             if (event_array[i].name != "No Longer on Sale for Web") {
-//                 new_card_row = $("<div></div>" );
-//                 $(new_card_row).addClass("")
-//             }
-//         }
-    
-//         })
-//     });
-    
-    
-    
-    $("#find-events-btn").on("click",  function(event){
-       //city.preventDefault;
 
-       var location = $("#location")[0].value;
-       var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc&locale=*&city=" + location + "&apikey=U9U79W6aroxgXPoxrbUloPyqkHPTVAyD";
-       console.log(queryURL);
+function createCardHeader(imageEl, card){
+   const image = document.createElement('img')
+   console.log("log card", card);
+   image.setAttribute('src', card.eventImage.url);
 
-       $.ajax({
-                     url: queryURL,
-                     method: "GET"
-                 }).then(function (response) {
-                    console.log(response);
-                    event_array = response._embedded.events;
+   const title = createElement('span', 'card-title');
+   title.textContent = card.eventName;
+   imageEl.appendChild(image);
+   imageEl.appendChild(title);
+   
+}
 
-                    artists1 = event_array[0].name;
-                    //artists1.text = $("#artists-1");
-                    $(artists1).html();
-                    $("#artist-1").html(artists1);
+function createElement(el, className) {
+   const e = document.createElement(el);
+   e.classList.add(className);
+   return e;
+}
+
+function createTextElement(text) {
+   const el = document.createElement('p');
+   const textNode = document.createTextNode(text);
+   el.appendChild(textNode);
+   return el;
+}
+
+function formatTime(dateObj) {
+
+   let monthFormatter = new Intl.DateTimeFormat('en-US', { month: 'long' });
+
+   if (dateObj.noSpecificTime) {
+      const dateTime = new Date(dateObj.localDate);
+      const month = monthFormatter.format(dateTime);
+      const date = dateTime.getDate();
+
+      return `${month} ${date}`;
+   } else {
+      const dateTime = new Date(dateObj.dateTime);
+      const date = dateTime.getDate();
+      const month = monthFormatter.format(dateTime)
+      const time = dateTime.toLocaleTimeString();
+
+      return `${month} ${date}, ${time}`;
+   }
+}
+
+function createCardContent(card, contentEl) {
+   const titleText = createTextElement(card.eventName);
+   const venueText = createTextElement(card.eventVenue)
+   const timeText = createTextElement(formatTime(card.eventDateTime));
+
+   contentEl.appendChild(titleText);
+   contentEl.appendChild(venueText);
+   contentEl.appendChild(timeText);
+}
+
+function renderCard(data) {
+   const cardContainer = createElement('div', 'col');
+   cardContainer.classList.add('s12');
+   cardContainer.classList.add('m4');
+   cardContainer.classList.add('l4');
+   const cardItem = createElement('div', 'card');
+   const cardImage  = createElement('div', 'card-image');
+
+   createCardHeader(cardImage, data);
+   const cardContent = createElement('div', 'card-content');
+   cardContent.classList.add('black-text');
+   createCardContent(data, cardContent);
+
+   cardItem.appendChild(cardImage);
+   cardItem.appendChild(cardContent);
+   cardContainer.appendChild(cardItem);
+   return cardContainer;
+
+}
+
+   function displayCards(cardArray) {
+      const resultsContainer = document.getElementById('results');
+      
+      cardArray.forEach((card) => {
+         const row = createElement('div', 'row');
+         const renderedCard = renderCard(card);
+         console.log("rendered card: ", renderedCard);
+         // const newRow = createElement('div', 'row');
+         row.appendChild(renderedCard);
+         resultsContainer.appendChild(row);   
+      })
+
+   }
+
+   $("#find-events-btn").on("click",  function(event){
+      event.preventDefault;
+
+      var location = $("#location")[0].value;
+      var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc&locale=*&city=" + location + "&apikey=U9U79W6aroxgXPoxrbUloPyqkHPTVAyD";
+      console.log(queryURL)
+      $.ajax({
+         url: queryURL,
+         method: "GET"
+      }).then(function (response) {
+         let cardArray = new Array();          
+         console.log(response);
+         response._embedded.events.forEach((event) => {
+            //console.log("event log: ", event);
+            const card = {
+               eventName: event.name,
+               eventVenue: event._embedded.venues[0].name,
+               eventDateTime: event.dates.start,
+               eventImage: event.images[0],
+            }
+            //console.log("card log: ", card);
+            cardArray.push(card);
+         })
+         displayCards(cardArray);
+      });
+      
+
+   });      
 
 
-                 })
-        });
-        
-   // console.log(fetchEventsForCity("Atlanta"));    
-   // $("#find-events-btn").on("click",fetchEventsForCity);
-    
         
     $(document).ready(function(){
        $('.tabs').tabs();
