@@ -11,6 +11,7 @@
 #### THEN results filter based on said criteria
 #### WHEN I decide on an event
 #### THEN I am shown bars/restaurants nearby
+something
 
 ## APIs Used
 * Ticketmaster
