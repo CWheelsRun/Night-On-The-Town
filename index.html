@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Night On The Town</title>
 </head>
@@ -19,8 +20,7 @@
                 <div class="card">
                     <div class="card-panel black center-align" id="title">
                         <h1 id="site-name" style="clear:right;">Night On The Town</h1>
-                        <span id="ticketmaster">powered by <img id="tm-logo" src="./assets/images/Ticketmaster.png"
-                            style="width: 8em; height: 1em"></span>
+                        <span id="ticketmaster">powered by <img id="tm-logo" src="./assets/images/ticketmaster.png" style="width: 8em; height: 1em"></span>
                     </div>
                 </div>
             </div>
@@ -37,36 +37,37 @@
                 </div>
             </div>
 
-            <div class="row">
-                <button type="submit" name="btn_find" class="col s12 btn btn-large"
-                    id="find-events-btn">Find Events!</button>
+            <div class="row" id="find-btns">
+                <button type="submit" name="btn_find" class="col s3 btn btn-large" id="music-btn">Music</button>
+                <button type="submit" name="btn_find" class="col s3 btn btn-large" id="sports-btn">Sports</button>
+                <button type="submit" name="btn_find" class="col s3 btn btn-large" id="arts-btn">Art/Theatre</button>
             </div>
         </div>
 
-        <div class="row" id="results" style="display:flex">
-            <div class="col s12 m3">
+        <div class="row" id="results" style="display:non">
+            <div class="col s3">
                 <div class="card">
-                    <div class="card-panel black white-text event-results ">
-                        <p id="artist-1" class="event-title truncate"> </p><br>
+                    <div class="card-panel black event-results">
+                        <span id="artist-1" class="event-title truncate"></span><br>
                         <span id="venue-1"></span><br>
                         <span id="date-1"></span><br>
                         <span id="time-1"></span>
-                        <a href="" target="_blank" id="info-1">
-                            <div class="card-image hoverable" id="test">
+                        <a href="" id="info-1">
+                            <div class="card-image hoverable">
                                 <img class="event-pic" id="image-1">
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m3">
+            <div class="col s3">
                 <div class="card">
                     <div class="card-panel black event-results">
                         <span id="artist-2" class="event-title truncate"></span><br>
                         <span id="venue-2"></span><br>
                         <span id="date-2"></span><br>
                         <span id="time-2"></span>
-                        <a href="" target="_blank" id="info-2">
+                        <a href="" id="info-2">
                             <div class="card-image hoverable">
                                 <img class="event-pic" id="image-2"></img>
                             </div>
@@ -74,14 +75,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m3">
+            <div class="col s3">
                 <div class="card">
                     <div class="card-panel black event-results">
                         <span id="artist-3" class="event-title truncate"></span><br>
                         <span id="venue-3"></span><br>
                         <span id="date-3"></span><br>
                         <span id="time-3"></span>
-                        <a href="" target="_blank" id="info-3"></a>
+                        <a href="" id="info-3"></a>
                         <div class="card-image hoverable">
                             <img class="event-pic" id="image-3"></img>
                         </div>
@@ -90,14 +91,14 @@
                 </div>
 
             </div>
-            <div class="col s12 m3">
+            <div class="col s3">
                 <div class="card">
                     <div class="card-panel black event-results">
                         <span id="artist-4" class="event-title truncate"></span><br>
                         <span id="venue-4"></span><br>
                         <span id="date-4"></span><br>
                         <span id="time-4"></span>
-                        <a href="" target="_blank" id="info-4">
+                        <a href="" id="info-4">
                             <div class="card-image hoverable">
                                 <img class="event-pic" id="image-4"></img>
                             </div>
@@ -107,9 +108,9 @@
             </div>
         </div>
 
-        <div id="tabs">
-            <a class="btn-floating" id="tab-left" style="color:rgb(26, 112, 170)"></a>&nbsp;
-            <a class="btn-floating" id="tab-right" style="color:rgb(26, 112, 170)">></a>&nbsp;
+        <div id="tabs" style="display:non">
+            <a class="btn-floating" id="tab-left"><i class="material-icons">arrow_back</i></a>
+            <a class="btn-floating" id="tab-right"><i class="material-icons">arrow_forward</i></a>
         </div>
 
         <footer>
