@@ -54,7 +54,7 @@ function createCardContent(card, contentEl) {
 
 function createCardLink(linkEl) {
    const link = createElement('a');
-   link.textContent = 'Bars & Restaurants';
+   link.textContent = 'Restaurants & Bars';
    link.setAttribute('href', 'yelp.html');
    
    linkEl.appendChild(link);
