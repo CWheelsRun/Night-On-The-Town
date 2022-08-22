@@ -1,3 +1,6 @@
+var user_location = localStorage.getItem('user_location')
+console.log(user_location)
+
 var userFormEl = document.querySelector("#user-form")
  //Form that asks user for their city
 var searchInputEl = document.querySelector("#userCity")
@@ -31,7 +34,6 @@ myHeaders.append(
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("mode", "no-cors");
 myHeaders.append("Access-Control-Allow-Origin", "*");
-  
 
 button.addEventListener('click', function (restYelp){
   fetch(proxyURL + restaurantListURL, {
