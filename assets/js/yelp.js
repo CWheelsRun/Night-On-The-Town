@@ -1,11 +1,5 @@
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
-
+var user_location = localStorage.getItem('user_location')
+console.log(user_location)
 
 var userFormEl = document.querySelector("#user-form")
  //Form that asks user for their city
@@ -40,7 +34,6 @@ myHeaders.append(
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("mode", "no-cors");
 myHeaders.append("Access-Control-Allow-Origin", "*");
-  
 
 button.addEventListener('click', function (restYelp){
   fetch(proxyURL + restaurantListURL, {
@@ -64,12 +57,3 @@ button.addEventListener('click', function (restYelp){
   .catch(err => alert ("Could not locate city!"))
 
 });
-
-
-
-
-
-      
-
-
-
