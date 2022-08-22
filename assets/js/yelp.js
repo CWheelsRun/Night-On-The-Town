@@ -1,59 +1,103 @@
 var user_location = localStorage.getItem('user_location')
 console.log(user_location)
 
-var userFormEl = document.querySelector("#user-form")
- //Form that asks user for their city
-var searchInputEl = document.querySelector("#userCity")
-//Container or the resturants
-var restList = document.getElementById("yelpRests")
+function createElement(el, className) {
+  const e = document.createElement(el);
+  e.classList.add(className);
+  return e;
+}
 
-var historyEl = document.getElementById("history")
+function createTextElement(text) {
+  const el = document.createElement('h5');
+  const textNode = document.createTextNode(text);
+  el.appendChild(textNode);
+  return el;
+}
 
-var button = document.querySelector(".submit-btn")
+function formatTime(dateObj) {
 
-var yelpCall = []
-var lon = "";
-var lat = "";
+  let monthFormatter = new Intl.DateTimeFormat('en-US', { month: 'long' });
 
-var apiKey = "2Jru7BYhCgrp7RHLAYqJRZjQzkzWkSs0W0605u8TICakr9Pndi8nnPqgJFjLr-UFl2kvxfvR7aTzr78HwZUav_4tjBKNiRVqMXUllxda-Jsu3OFalXAjlw3-Sa31YnYx"
+  if (dateObj.noSpecificTime) {
+     const dateTime = new Date(dateObj.localDate);
+     const month = monthFormatter.format(dateTime);
+     const date = dateTime.getDate();
 
-var restaurantListURL =
-"https://api.yelp.com/v3/businesses/search?location=" +
-searchInputEl +
-"&radius=2000&limit=10&sort_by=rating";
+     return `${month} ${date}`;
+  } else {
+     const dateTime = new Date(dateObj.dateTime);
+     const date = dateTime.getDate();
+     const month = monthFormatter.format(dateTime)
+     const time = dateTime.toLocaleTimeString();
 
-var proxyURL = "https://cors-anywhere.herokuapp.com/";
+     return `${month} ${date}, ${time}`;
+  }
+}
 
+function createCardContent(card, contentEl) {
+  const titleText = createTextElement(card.eventName);
+  const venueText = createTextElement(card.eventVenue)
+  const timeText = createTextElement(formatTime(card.eventDateTime));
+
+  contentEl.appendChild(titleText);
+  contentEl.appendChild(venueText);
+  contentEl.appendChild(timeText);
+}
+
+function renderCard(card) {
+  const cardContainer = createElement('div', 'col');
+  cardContainer.classList.add('s12');
+  const cardItem = createElement('div', 'card');
+  cardItem.classList.add('horizontal', 'deep-purple', 'lighten-3');
+
+  const cardContent = createElement('div', 'card-content');
+  cardContent.classList.add('blue-text', 'text-darken-4');
   
-let myHeaders = new Headers();
-myHeaders.append("method", "GET");
-myHeaders.append(
-  "Authorization",
-  "Bearer " + apiKey
-);
-myHeaders.append("Content-Type", "application/json");
-myHeaders.append("mode", "no-cors");
-myHeaders.append("Access-Control-Allow-Origin", "*");
+  createCardContent(card, cardContent);
 
-button.addEventListener('click', function (restYelp){
-  fetch(proxyURL + restaurantListURL, {
-    method: "GET",
-    headers: {
-        "accept": "application/json",
-        "Access-Control-Allow-Origin":"*",
-        "Authorization": `Bearer ${apiKey}`
-     }
+  cardItem.appendChild(cardContent);
+  cardContainer.appendChild(cardItem);
+  return cardContainer;
+}
+
+function displayCards(cardArray) {
+  const resultsContainer = document.getElementById('results');
+     
+  cardArray.forEach((card) => {
+     const row = createElement('div', 'row');
+     const renderedCard = renderCard(card);
+     console.log("rendered card: ", renderedCard);
+     // const newRow = createElement('div', 'row');
+     row.appendChild(renderedCard);
+     resultsContainer.appendChild(row);
   })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .then(data => {
-    var resturants = data['businesses'];
-    var images = data['image_url'];
+}
 
-    restList.innerHTML = resturants;
-    restList.innerHTML = images
-  })  
-
-  .catch(err => alert ("Could not locate city!"))
-
+var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc&locale=*&city=" + user_location + "&apikey=U9U79W6aroxgXPoxrbUloPyqkHPTVAyD";
+console.log(queryURL)
+$.ajax({
+   url: queryURL,
+   method: "GET"
+}).then(function (response) {
+   let cardArray = new Array();
+   console.log(response);
+   removeStaleEvents();
+   response._embedded.events.forEach((event) => {
+      //console.log("event log: ", event);
+      const card = {
+         eventName: event.name,
+         eventVenue: event._embedded.venues[0].name,
+         eventDateTime: event.dates.start,
+      }
+      //console.log("card log: ", card);
+      cardArray.push(card);
+   })
+   displayCards(cardArray);
+    function removeStaleEvents() {
+      var el = document.getElementById('results');
+      while (el.firstChild)
+         el.removeChild(el.firstChild);
+   }
 });
+
+//console.log(localStorage.getItem('user_location'));
